@@ -8,7 +8,7 @@
   Constructs a discrete distribution for two proportions under a testing or uniform hypotheses
 }
 \usage{
-  testing_prior(lo=.1, hi=.9, np=9,
+  testing_prior(lo=.1, hi=.9, n_values=9,
         pequal=0.5, uniform=FALSE)
 }
 \arguments{
@@ -18,7 +18,7 @@
   \item{hi}{
     maximum value of each proportion
   }
-  \item{np}{
+  \item{n_values}{
     number of values of each proportion
   }
   \item{pequal}{
@@ -37,5 +37,9 @@
 }
 
 \examples{
+  # testing prior where each proportion is
+  # .1, .3, .5, .7, .9
   Prob <- testing_prior(.1, .9, 5)
+  # uniform prior over same proportion values
+  Prob <- testing_prior(.1, .9, 5, uniform=TRUE)
 }

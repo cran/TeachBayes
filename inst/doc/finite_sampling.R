@@ -4,20 +4,22 @@ knitr::opts_chunk$set(fig.width=6, fig.height=4, fig.path='Figs/',
 
 ## ------------------------------------------------------------------------
 library(TeachBayes)
-quantile1 <- list(x = .7, p = .5)
-quantile2 <- list(x = .85, p = .9)
-(ab <- beta.select(quantile1, quantile2))
+bayes_df <- data.frame(B=0:50, Prior=rep(1/51, 51))
 
 ## ------------------------------------------------------------------------
-beta_interval(.9, ab)
+sample_b <- 3
+pop_N <- 50
+sample_n <- 10
+bayes_df$Likelihood <- dsampling(sample_b, pop_N, 
+                                 bayes_df$B, sample_n)
 
 ## ------------------------------------------------------------------------
-beta_area(0, .75, ab)
+bayes_df <- bayesian_crank(bayes_df)
 
 ## ------------------------------------------------------------------------
-p <- beta_data(ab)
-ggplot(data.frame(p=p), aes(x=p)) +
-  geom_histogram(aes(y = ..density..), 
-                 fill="orange", color="black") + 
-  geom_density()
+prior_post_plot(bayes_df)
+
+## ------------------------------------------------------------------------
+library(dplyr)
+discint(select(bayes_df, B, Posterior), 0.90)
 

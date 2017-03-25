@@ -7,14 +7,15 @@ knitr::opts_chunk$set(fig.width=6,
 library(TeachBayes)
 
 ## ------------------------------------------------------------------------
-values <- seq(.05, .95, by=.1)
-prior <- prior.two.parameters(values, values)
+prior <- testing_prior(.05, .95, 10,
+                       uniform=TRUE)
 
 ## ------------------------------------------------------------------------
 draw_two_p(prior)
 
 ## ------------------------------------------------------------------------
-prob_plot(two_p_summarize(prior))
+(diff_dist <- two_p_summarize(prior))
+prob_plot(diff_dist)
 
 ## ------------------------------------------------------------------------
 y1n1 <- c(10, 20)
@@ -30,7 +31,7 @@ draw_two_p(post)
 prob_plot(two_p_summarize(post))
 
 ## ------------------------------------------------------------------------
-prior <- testing_prior(.05, .95, 10, .5)
+prior <- testing_prior(.05, .95, 10, pequal=0.5)
 
 ## ------------------------------------------------------------------------
 draw_two_p(prior)

@@ -1,4 +1,5 @@
 normal_interval <- function(prob, normal_pars){
+  normal_pars <- unlist(normal_pars)
   x_lo <- normal_pars[1] - 4 * normal_pars[2]
   x_hi <- normal_pars[1] + 4 * normal_pars[2]
   x <- seq(x_lo, x_hi, length.out=100)
@@ -7,8 +8,8 @@ normal_interval <- function(prob, normal_pars){
     geom_line()
   interval <- qnorm(c((1 - prob) / 2, 1 - (1 - prob) / 2),
                     normal_pars[1], normal_pars[2])
-  interval <- round(interval, 1)
-  normal_pars <- round(normal_pars, 1)
+#  interval <- round(interval, 1)
+#  normal_pars <- round(normal_pars, 1)
   lo <- interval[1]
   hi <- interval[2]
   LO <- max(x_lo, lo)

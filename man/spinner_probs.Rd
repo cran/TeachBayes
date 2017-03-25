@@ -12,12 +12,12 @@
 }
 \arguments{
   \item{regions}{
-    vector of integer values for the spins 1, 2, ...
+    vector of positive values for the spins 1, 2, ...
   }
 }
 
 \value{
-  Data frame with variables Spin and Prob
+  Data frame with variables Region and Prob
 }
 \author{
   Jim Albert
